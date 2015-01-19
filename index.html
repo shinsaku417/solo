@@ -5,12 +5,14 @@
   <script src="js/app.js"></script>
 </head>
 <body>
-  <h1>MultiStream</h1>
-  <div ng-app="multistream" ng-controller="multistreamCtrl">
-    <form ng-submit="searchTwitch()">
-      <input type="text" ng-model="input.username" required></input>
-      <button>Search</button>
-    </form>
+  <h1>HexStream</h1>
+  <div ng-app="hexstream" ng-controller="hexstreamCtrl">
+    <div class="userInput">
+      <form ng-submit="searchTwitch()">
+        <input type="text" ng-model="input.username" required></input>
+        <button>Search</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>

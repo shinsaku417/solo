@@ -1,9 +1,12 @@
-angular.module('multistream', [])
+angular.module('hexstream', [])
 
-.controller('multistreamCtrl', function ($scope, Factory) {
+.controller('hexstreamCtrl', function ($scope, Factory) {
+  $scope.input = {};
+
   $scope.searchTwitch = function() {
+    angular.element(document.body.querySelector('p')).remove();
     Factory.searchTwitch($scope.input.username);
-    $scope.input = {};
+    $scope.input.username = "";
   }
 })
 .factory('Factory', function($http) {
@@ -17,11 +20,22 @@ angular.module('multistream', [])
         iframe.height = "378";
         iframe.width = "450";
         document.body.appendChild(iframe);
+      } else {
+        errorFeedback("Username " + username + " not found!");
       }
     }).error(function (data) {
-      console.log('Got nothing');
+      errorFeedback("Oops! Something went wrong. Try again.");
     });
   };
+
+  var errorFeedback = function(message) {
+    var errorMessage = document.createElement('p');
+    errorMessage.innerHTML = message;
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "14px";
+    angular.element(document.body.querySelector('.userInput')).append(errorMessage);
+  }
+
   return {
     searchTwitch: searchTwitch
   };
