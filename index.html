@@ -1,0 +1,16 @@
+<doctype! html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <h1>MultiStream</h1>
+  <div ng-app="multistream" ng-controller="multistreamCtrl">
+    <form ng-submit="searchStream()">
+      <input type="text" ng-model="input.username"></input>
+      <button>Search</button>
+    </form>
+  </div>
+</body>
+</html>
