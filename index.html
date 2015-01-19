@@ -1,16 +1,24 @@
 <doctype! html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="js/factory.js"></script>
   <script src="js/app.js"></script>
 </head>
 <body>
   <h1>HexStream</h1>
   <div ng-app="hexstream" ng-controller="hexstreamCtrl">
     <div class="userInput">
-      <form ng-submit="searchTwitch()">
-        <input type="text" ng-model="input.username" required></input>
-        <button>Search</button>
+      <form>
+        <input type="text" ng-model="input.username"></input>
+        <input type='submit' value='Search' ng-click="searchTwitch()"></input>
+        <button ng-click="removeStream(0)">Remove Stream 1</button>
+        <button ng-click="removeStream(1)">Remove Stream 2</button>
+        <button ng-click="removeStream(2)">Remove Stream 3</button>
+        <button ng-click="removeStream(3)">Remove Stream 4</button>
+        <button ng-click="removeStream(4)">Remove Stream 5</button>
+        <button ng-click="removeStream(5)">Remove Stream 6</button>
       </form>
     </div>
   </div>
