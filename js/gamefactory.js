@@ -22,5 +22,5 @@ angular.module('hexstream.gamefactory', ['hexstream.userfactory', 'hexstream.hel
   };
   return {
     searchGame: searchGame
-  }
+  };
 });

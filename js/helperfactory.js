@@ -19,12 +19,12 @@ angular.module('hexstream.helperfactory', [])
     while (errorMessages.length > 0) {
       errorMessages[0].parentNode.removeChild(errorMessages[0]);
     }
-  }
+  };
 
   return {
     errorFeedback: errorFeedback,
     setStorage: setStorage,
     removeError: removeError
-  }
+  };
 
 });
