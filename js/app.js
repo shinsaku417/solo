@@ -29,7 +29,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
   }
 
   $scope.searchUser = function() {
-    $scope.search(UserFactory.searchUser, "userInput", ".user");
+    $scope.search(UserFactory.searchUser, "userInput", ".game");
   };
 
   $scope.searchGame = function(event) {
