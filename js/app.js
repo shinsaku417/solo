@@ -8,7 +8,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
 
   $scope.init = function() {
     var storedStreamers = localStorage.getItem("streamers");
-    if (storedStreamers !== 'undefined') {
+    if (storedStreamers !== 'undefined' || storedStreamers !== 'null') {
       storedStreamers = JSON.parse(storedStreamers);
       for (var i = 0; i < storedStreamers.length; i++) {
         UserFactory.createTwitchStream(storedStreamers[i]);
