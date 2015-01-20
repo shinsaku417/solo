@@ -21,19 +21,10 @@ angular.module('hexstream.helperfactory', [])
     }
   }
 
-  var removeTabs = function() {
-    removeError();
-    var streamerTabs = document.getElementsByClassName("streamerTab");
-    while (streamerTabs.length > 0) {
-      streamerTabs[0].parentNode.removeChild(streamerTabs[0]);
-    }
-  }
-
   return {
     errorFeedback: errorFeedback,
     setStorage: setStorage,
-    removeError: removeError,
-    removeTabs: removeTabs
+    removeError: removeError
   }
 
 });

@@ -2,8 +2,31 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
 
 .controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http) {
   $scope.data = {};
+
   var streams = UserFactory.streams;
   var streamers = UserFactory.streamers;
+
+  $scope.init = function() {
+    var storedStreamers = localStorage.getItem("streamers");
+    if (storedStreamers !== 'undefined') {
+      storedStreamers = JSON.parse(storedStreamers);
+      for (var i = 0; i < storedStreamers.length; i++) {
+        UserFactory.createTwitchStream(storedStreamers[i]);
+      }
+    }
+  }
+  $scope.init();
+
+  $scope.search = function(callback, input, formClass) {
+    HelperFactory.removeError();
+    if ($scope.data[input] !== undefined) {
+      callback($scope.data[input]);
+      $scope.data[input] = undefined;
+    } else {
+      HelperFactory.errorFeedback('Please enter something', formClass);
+      $scope.data[input] = undefined;
+    }
+  }
 
   $scope.searchUser = function() {
     $scope.search(UserFactory.searchUser, "userInput", ".user");
@@ -21,7 +44,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
     if (game === undefined) {
       HelperFactory.errorFeedback("Please enter something.", ".game");
     } else {
-      $http.jsonp('https://api.twitch.tv/kraken/streams?limit=10&game=' + game + '&callback=JSON_CALLBACK').success(function(data){
+      $http.jsonp('https://api.twitch.tv/kraken/streams?limit=15&game=' + game + '&callback=JSON_CALLBACK').success(function(data){
         var gameStreams = data.streams;
         var gameStreamers = [];
         if (gameStreams.length > 0) {
@@ -45,34 +68,13 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
     UserFactory.createTwitchStream(streamer);
   }
 
-  $scope.search = function(callback, input, formClass) {
-    HelperFactory.removeError();
-    if ($scope.data[input] !== undefined) {
-      callback($scope.data[input]);
-      $scope.data[input] = undefined;
-    } else {
-      HelperFactory.errorFeedback('Please enter something', formClass);
-      $scope.data[input] = undefined;
-    }
-  }
 
   $scope.removeStream = function(num) {
     UserFactory.removeStream(num);
   };
 
   $scope.removeTabs = function() {
-    HelperFactory.removeTabs();
+    $scope.data.gameStreamers = [];
+    $scope.query = "";
   }
-
-  $scope.init = function() {
-    var storedStreamers = localStorage.getItem("streamers");
-    if (storedStreamers !== 'undefined') {
-      storedStreamers = JSON.parse(storedStreamers);
-      for (var i = 0; i < storedStreamers.length; i++) {
-        UserFactory.createTwitchStream(storedStreamers[i]);
-      }
-    }
-  }
-
-  $scope.init();
 });

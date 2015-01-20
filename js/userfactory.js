@@ -27,7 +27,7 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
       iframe.frameborder = "0";
       iframe.scrolling = "no";
       iframe.height = "370";
-      iframe.width = "460";
+      iframe.width = (window.innerWidth / 3) - 10;
       document.body.appendChild(iframe);
       streams.push(iframe);
       streamers.push(username);

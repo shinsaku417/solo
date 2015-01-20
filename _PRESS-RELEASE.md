@@ -15,16 +15,12 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
-
-## Heading ##
-  > Angular App that allow users to watch multiple streams at once by entering streamer's username.
-
 ## Sub-Heading ##
   > For those who are not satisfied with a single stream.
 
 ## Summary ##
-  > This app allows users to watch multiple streams on the same screen. Just type in
-  your favorite streamer's username and start watching.
+  > This app allows users to easily watch multiple streams on the same screen. Just type in
+  your favorite streamer's username or search for games to start watching.
 
 ## Problem ##
   > One stream is not enough to satisfy e-sports watchers.
@@ -33,13 +29,13 @@ Once the project moves into development, the press release can be used as a touc
   > This app solves the problem by making it extremely easy to watch multiple streams at once.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > Watching multiple streams have never been this easy
 
 ## How to Get Started ##
-  > Go to the site and type streamer's username on the input box.
+  > Go to the site and type streamer's username or search for games.
 
 ## Customer Quote ##
   > "Now I don't need to buy anymore monitors to watch more streams"
 
 ## Closing and Call to Action ##
-  > Go to www.multistream.com and start watching
+  > Go to www.hexstream.com and start watching

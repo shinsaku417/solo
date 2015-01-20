@@ -32,9 +32,12 @@
         <button ng-click="searchGame($event)">Dota 2</button>
         <button ng-click="removeTabs()">Remove Tabs</button>
       </form>
-      <span ng-repeat="streamer in data.gameStreamers">
-        <button class="streamerTab" ng-click="makeStream(streamer)">{{streamer}}</button>
-      </span>
+      <div>
+        <input ng-model="query" type="text" placeholder="Filter by" autofocus>
+        <span ng-repeat="streamer in data.gameStreamers | filter:query">
+          <button class="streamerTab" ng-click="makeStream(streamer)">{{streamer}}</button>
+        </span>
+      </div>
     </div>
   </div>
 </body>
