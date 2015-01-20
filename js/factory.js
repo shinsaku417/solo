@@ -2,19 +2,13 @@ angular.module('hexstream.factory', [])
 
 .factory('Factory', function($http) {
   var streams = [];
+  var streamers = [];
 
   var searchTwitch = function(username) {
     if (streams.length < 6) {
       $http.jsonp('https://api.twitch.tv/kraken/channels/' + username + '?callback=JSON_CALLBACK').success(function(data){
         if (data.error !== "Not Found") {
-          var iframe = document.createElement('iframe');
-          iframe.src = "http://www.twitch.tv/" + username + "/embed";
-          iframe.frameborder = "0";
-          iframe.scrolling = "no";
-          iframe.height = "378";
-          iframe.width = "425";
-          document.body.appendChild(iframe);
-          streams.push(iframe);
+          createTwitchStream(username);
         } else {
           errorFeedback("Username " + username + " not found!");
         }
@@ -25,6 +19,19 @@ angular.module('hexstream.factory', [])
       errorFeedback("Too many streams open!");
     }
   };
+
+  var createTwitchStream = function(username) {
+    var iframe = document.createElement('iframe');
+    iframe.src = "http://www.twitch.tv/" + username + "/embed";
+    iframe.frameborder = "0";
+    iframe.scrolling = "no";
+    iframe.height = "378";
+    iframe.width = "425";
+    document.body.appendChild(iframe);
+    streams.push(iframe);
+    streamers.push(username);
+    setStorage();
+  }
 
   var errorFeedback = function(message) {
     var errorMessage = document.createElement('p');
@@ -40,13 +47,21 @@ angular.module('hexstream.factory', [])
   var removeStream = function(num) {
     if (streams.length > num) {
       var iframe = streams.splice(num, 1)[0];
+      streamers.splice(num, 1);
       iframe.parentNode.removeChild(iframe);
+      setStorage();
     }
+  };
+
+  var setStorage = function() {
+    localStorage["streamers"] = JSON.stringify(streamers);
   };
 
   return {
     streams: streams,
+    streamers: streamers,
     searchTwitch: searchTwitch,
+    createTwitchStream: createTwitchStream,
     removeStream: removeStream
   };
 });

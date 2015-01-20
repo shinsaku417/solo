@@ -12,4 +12,16 @@ angular.module('hexstream', ['hexstream.factory'])
   $scope.removeStream = function(num) {
     Factory.removeStream(num);
   };
+
+  $scope.init = function() {
+    var streamers = localStorage.getItem("streamers");
+    if (streamers) {
+      streamers = JSON.parse(streamers);
+      for (var i = 0; i < streamers.length; i++) {
+        Factory.createTwitchStream(streamers[i]);
+      }
+    }
+  }
+
+  $scope.init();
 });
