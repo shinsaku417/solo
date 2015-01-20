@@ -1,6 +1,6 @@
 angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', 'hexstream.helperfactory'])
 
-.controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory) {
+.controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http) {
   $scope.data = {};
   var streams = UserFactory.streams;
   var streamers = UserFactory.streamers;
@@ -9,18 +9,48 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
     $scope.search(UserFactory.searchUser, "userInput", ".user");
   };
 
-  $scope.searchGame = function() {
-    $scope.search(GameFactory.searchGame, "gameInput", ".game");
+  $scope.searchGame = function(event) {
+    HelperFactory.removeDom();
+    var game;
+    if (event) {
+      game = event.srcElement.innerHTML;
+    } else {
+      game = $scope.data.gameInput;
+    }
+    if (game === undefined) {
+      HelperFactory.errorFeedback("Please enter something.", ".game");
+    } else {
+      $http.jsonp('https://api.twitch.tv/kraken/streams?limit=10&game=' + game + '&callback=JSON_CALLBACK').success(function(data){
+        var gameStreams = data.streams;
+        var gameStreamers = [];
+        if (gameStreams.length > 0) {
+          for (var i = 0; i < gameStreams.length; i++) {
+            var gameStreamer = gameStreams[i].channel.display_name;
+            gameStreamers.push(gameStreamer);
+          }
+          $scope.data.gameStreamers = gameStreamers;
+        } else {
+          HelperFactory.errorFeedback("Looks like " + game + " is not being streamed!", ".game");
+        }
+      }).error(function (data) {
+        HelperFactory.errorFeedback("Oops! Something went wrong. Try again.", ".game");
+      });
+    }
+    // $scope.search(GameFactory.searchGame, "gameInput", ".game");
   };
 
+  $scope.makeStream = function(streamer) {
+    UserFactory.createTwitchStream(streamer);
+  }
+
   $scope.search = function(callback, input, formClass) {
-    angular.element(document.body.querySelector('p')).remove();
+    HelperFactory.removeDom();
     if ($scope.data[input] !== undefined) {
       callback($scope.data[input]);
       $scope.data[input] = undefined;
     } else {
       HelperFactory.errorFeedback('Please enter something', formClass);
-      $scope.dat[input] = undefined;
+      $scope.data[input] = undefined;
     }
   }
 

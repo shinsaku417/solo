@@ -2,8 +2,8 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script> -->
+  <script src="angular/angular.min.js"></script>
   <script src="js/helperfactory.js"></script>
   <script src="js/userfactory.js"></script>
   <script src="js/gamefactory.js"></script>
@@ -17,17 +17,24 @@
       <form class="user">
         <input type="text" ng-model="data.userInput"></input>
         <input type='submit' value='Search Streamer' ng-click="searchUser()"></input>
-        <button ng-click="removeStream(5)">Remove Stream 6</button>
-        <button ng-click="removeStream(4)">Remove Stream 5</button>
-        <button ng-click="removeStream(3)">Remove Stream 4</button>
-        <button ng-click="removeStream(2)">Remove Stream 3</button>
-        <button ng-click="removeStream(1)">Remove Stream 2</button>
-        <button ng-click="removeStream(0)">Remove Stream 1</button>
+        <button class="remove" ng-click="removeStream(5)">Remove Stream 6</button>
+        <button class="remove" ng-click="removeStream(4)">Remove Stream 5</button>
+        <button class="remove" ng-click="removeStream(3)">Remove Stream 4</button>
+        <button class="remove" ng-click="removeStream(2)">Remove Stream 3</button>
+        <button class="remove" ng-click="removeStream(1)">Remove Stream 2</button>
+        <button class="remove" ng-click="removeStream(0)">Remove Stream 1</button>
       </form>
       <form class="game">
         <input type="text" ng-model="data.gameInput"></input>
         <input type='submit' value='Search Game' ng-click="searchGame()"></input>
+        <button ng-click="searchGame($event)">League of Legends</button>
+        <button ng-click="searchGame($event)">Counter-Strike: Global Offensive</button>
+        <button ng-click="searchGame($event)">Hearthstone</button>
+        <button ng-click="searchGame($event)">Dota 2</button>
       </form>
+      <span ng-repeat="streamer in data.gameStreamers">
+        <a ng-click="makeStream(streamer)">{{streamer + " /"}}</a>
+      </span>
     </div>
   </div>
 </body>

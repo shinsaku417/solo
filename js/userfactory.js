@@ -21,16 +21,20 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
   };
 
   var createTwitchStream = function(username) {
-    var iframe = document.createElement('iframe');
-    iframe.src = "http://www.twitch.tv/" + username + "/embed";
-    iframe.frameborder = "0";
-    iframe.scrolling = "no";
-    iframe.height = "370";
-    iframe.width = "460";
-    document.body.appendChild(iframe);
-    streams.push(iframe);
-    streamers.push(username);
-    HelperFactory.setStorage(streamers);
+    if (streams.length < 6) {
+      var iframe = document.createElement('iframe');
+      iframe.src = "http://www.twitch.tv/" + username + "/embed";
+      iframe.frameborder = "0";
+      iframe.scrolling = "no";
+      iframe.height = "370";
+      iframe.width = "460";
+      document.body.appendChild(iframe);
+      streams.push(iframe);
+      streamers.push(username);
+      HelperFactory.setStorage(streamers);
+    } else {
+      HelperFactory.errorFeedback("Too many streams open!", ".user");
+    }
   }
 
   var removeStream = function(num) {

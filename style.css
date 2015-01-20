@@ -1,3 +1,7 @@
-button {
+.remove {
   float: right;
+}
+
+a {
+  color: blue;
 }
