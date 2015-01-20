@@ -1,24 +1,31 @@
-angular.module('hexstream', ['hexstream.factory'])
+angular.module('hexstream', ['hexstream.twitchfactory', 'hexstream.helperfactory'])
 
-.controller('hexstreamCtrl', function ($scope, Factory) {
+.controller('hexstreamCtrl', function ($scope, TwitchFactory, HelperFactory) {
   $scope.input = {};
+  var streams = TwitchFactory.streams;
+  var streamers = TwitchFactory.streamers;
 
   $scope.searchTwitch = function() {
     angular.element(document.body.querySelector('p')).remove();
-    Factory.searchTwitch($scope.input.username);
-    $scope.input.username = "";
+    if ($scope.input.username !== undefined) {
+      TwitchFactory.searchTwitch($scope.input.username);
+      $scope.input.username = undefined;
+    } else {
+      HelperFactory.errorFeedback('Please enter something');
+      $scope.input.username = undefined;
+    }
   };
 
   $scope.removeStream = function(num) {
-    Factory.removeStream(num);
+    HelperFactory.removeStream(streams, streamers, num);
   };
 
   $scope.init = function() {
-    var streamers = localStorage.getItem("streamers");
-    if (streamers) {
-      streamers = JSON.parse(streamers);
-      for (var i = 0; i < streamers.length; i++) {
-        Factory.createTwitchStream(streamers[i]);
+    var storedStreamers = localStorage.getItem("streamers");
+    if (storedStreamers) {
+      storedStreamers = JSON.parse(storedStreamers);
+      for (var i = 0; i < storedStreamers.length; i++) {
+        TwitchFactory.createTwitchStream(storedStreamers[i]);
       }
     }
   }
