@@ -6,6 +6,7 @@ angular.module('hexstream.helperfactory', [])
     errorMessage.innerHTML = message;
     errorMessage.style.color = "red";
     errorMessage.style.fontSize = "14px";
+    errorMessage.className = "error";
     angular.element(document.body.querySelector(formClass)).append(errorMessage);
   };
 
@@ -13,25 +14,26 @@ angular.module('hexstream.helperfactory', [])
     localStorage["streamers"] = JSON.stringify(streamers);
   };
 
-  var removeDom = function(nodeType) {
-    console.log(angular.element(document.body.querySelector('p')));
-    if(angular.element(document.body.querySelector('p')).length > 0) {
-      angular.element(document.body.querySelector('p'))[0].remove();
+  var removeError = function() {
+    var errorMessages = document.getElementsByClassName("error");
+    while (errorMessages.length > 0) {
+      errorMessages[0].parentNode.removeChild(errorMessages[0]);
     }
-    var domNodes = angular.element(document.body)[0].children[0].childNodes;
-    console.log(domNodes);
-    for (var i = 0; i < domNodes.length; i++) {
-      if (domNodes[i].nodeName === nodeType) {
-        console.log('removing ', domNodes[i]);
-        domNodes[i].parentNode.removeChild(domNodes[i]);
-      }
+  }
+
+  var removeTabs = function() {
+    removeError();
+    var streamerTabs = document.getElementsByClassName("streamerTab");
+    while (streamerTabs.length > 0) {
+      streamerTabs[0].parentNode.removeChild(streamerTabs[0]);
     }
   }
 
   return {
     errorFeedback: errorFeedback,
     setStorage: setStorage,
-    removeDom: removeDom
+    removeError: removeError,
+    removeTabs: removeTabs
   }
 
 });

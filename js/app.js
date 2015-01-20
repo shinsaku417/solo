@@ -10,9 +10,10 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
   };
 
   $scope.searchGame = function(event) {
-    HelperFactory.removeDom();
+    HelperFactory.removeError();
     var game;
     if (event) {
+      $scope.data.gameStreamers = [];
       game = event.srcElement.innerHTML;
     } else {
       game = $scope.data.gameInput;
@@ -24,6 +25,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
         var gameStreams = data.streams;
         var gameStreamers = [];
         if (gameStreams.length > 0) {
+          $scope.data.gameStreamers = [];
           for (var i = 0; i < gameStreams.length; i++) {
             var gameStreamer = gameStreams[i].channel.display_name;
             gameStreamers.push(gameStreamer);
@@ -44,7 +46,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
   }
 
   $scope.search = function(callback, input, formClass) {
-    HelperFactory.removeDom();
+    HelperFactory.removeError();
     if ($scope.data[input] !== undefined) {
       callback($scope.data[input]);
       $scope.data[input] = undefined;
@@ -57,6 +59,10 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
   $scope.removeStream = function(num) {
     UserFactory.removeStream(num);
   };
+
+  $scope.removeTabs = function() {
+    HelperFactory.removeTabs();
+  }
 
   $scope.init = function() {
     var storedStreamers = localStorage.getItem("streamers");
