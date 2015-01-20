@@ -10,13 +10,13 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
         if (data.error !== "Not Found") {
           createTwitchStream(username);
         } else {
-          HelperFactory.errorFeedback("Username " + username + " not found!", ".user");
+          HelperFactory.errorFeedback("Username " + username + " not found!", ".game");
         }
       }).error(function (data) {
-        HelperFactory.errorFeedback("Oops! Something went wrong. Try again.", ".user");
+        HelperFactory.errorFeedback("Oops! Something went wrong. Try again.", ".game");
       });
     } else {
-      HelperFactory.errorFeedback("Too many streams open!", ".user");
+      HelperFactory.errorFeedback("Too many streams open!", ".game");
     }
   };
 
@@ -33,7 +33,7 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
       streamers.push(username);
       HelperFactory.setStorage(streamers);
     } else {
-      HelperFactory.errorFeedback("Too many streams open!", ".user");
+      HelperFactory.errorFeedback("Too many streams open!", ".game");
     }
   }
 
@@ -42,6 +42,14 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
       var iframe = streams.splice(num, 1)[0];
       streamers.splice(num, 1);
       iframe.parentNode.removeChild(iframe);
+      HelperFactory.setStorage(streamers);
+    }
+    if (num === 6) {
+      while(streams.length > 0) {
+        var iframe = streams.splice(0, 1)[0];
+        streamers.splice(0, 1);
+        iframe.parentNode.removeChild(iframe);
+      }
       HelperFactory.setStorage(streamers);
     }
   };
