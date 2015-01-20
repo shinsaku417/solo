@@ -71,6 +71,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
 
 
   $scope.removeStream = function(num) {
+    HelperFactory.removeError();
     UserFactory.removeStream(num);
   };
 

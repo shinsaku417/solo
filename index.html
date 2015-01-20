@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <script src="js/helperfactory.js"></script>
   <script src="js/userfactory.js"></script>
@@ -15,28 +16,28 @@
     <div class="userInput">
       <form class="user">
         <input type="text" ng-model="data.userInput"></input>
-        <input type='submit' value='Search Streamer' ng-click="searchUser()"></input>
-        <button class="remove" ng-click="removeStream(6)">Remove All Streams</button>
-        <button class="remove" ng-click="removeStream(5)">Remove Stream 6</button>
-        <button class="remove" ng-click="removeStream(4)">Remove Stream 5</button>
-        <button class="remove" ng-click="removeStream(3)">Remove Stream 4</button>
-        <button class="remove" ng-click="removeStream(2)">Remove Stream 3</button>
-        <button class="remove" ng-click="removeStream(1)">Remove Stream 2</button>
-        <button class="remove" ng-click="removeStream(0)">Remove Stream 1</button>
+        <input class='btn btn-primary' type='submit' value='Search Streamer' ng-click="searchUser()"></input>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(0)">&times; Stream 1</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(1)">&times; Stream 2</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(2)">&times; Stream 3</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(3)">&times; Stream 4</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(4)">&times; Stream 5</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(5)">&times; Stream 6</button>
+        <button class='btn btn-danger' class="remove" ng-click="removeStream(6)">&times; All Streams</button>
       </form>
       <form class="game">
         <input type="text" ng-model="data.gameInput"></input>
-        <input type='submit' value='Search Game' ng-click="searchGame()"></input>
-        <button ng-click="searchGame($event)">League of Legends</button>
-        <button ng-click="searchGame($event)">Counter-Strike</button>
-        <button ng-click="searchGame($event)">Hearthstone</button>
-        <button ng-click="searchGame($event)">Dota 2</button>
-        <button ng-click="removeTabs()">Remove Tabs</button>
+        <input class='btn btn-primary' type='submit' value='Search Game' ng-click="searchGame()"></input>
+        <button class='btn btn-info' ng-click="searchGame($event)">League of Legends</button>
+        <button class='btn btn-info' ng-click="searchGame($event)">Counter-Strike</button>
+        <button class='btn btn-info' ng-click="searchGame($event)">Hearthstone</button>
+        <button class='btn btn-info' ng-click="searchGame($event)">Dota 2</button>
+        <button class='btn btn-danger' ng-click="removeTabs()">Remove Tabs</button>
       </form>
       <div>
         <input ng-model="query" type="text" placeholder="Filter by" autofocus>
         <span ng-repeat="streamer in data.gameStreamers | filter:query">
-          <button class="streamerTab" ng-click="makeStream(streamer)">{{streamer}}</button>
+          <button class="streamerTab btn btn-default" ng-click="makeStream(streamer)">{{streamer}}</button>
         </span>
       </div>
     </div>
