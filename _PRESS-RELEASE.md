@@ -21,4 +21,4 @@
   > "Now I don't need to buy anymore monitors to watch more streams"
 
 ## Closing and Call to Action ##
-  > Go to www.hexstream.com and start watching
+  > Go to http://hexstream.shinuesugi.com/ and start watching!
