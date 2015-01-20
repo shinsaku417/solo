@@ -5,7 +5,8 @@
   <script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <script src="js/helperfactory.js"></script>
-  <script src="js/twitchfactory.js"></script>
+  <script src="js/userfactory.js"></script>
+  <script src="js/gamefactory.js"></script>
   <script src="js/app.js"></script>
   <title>HexStream</title>
 </head>
@@ -13,15 +14,19 @@
   <h2>HexStream</h2>
   <div ng-app="hexstream" ng-controller="hexstreamCtrl">
     <div class="userInput">
-      <form>
-        <input type="text" ng-model="input.username"></input>
-        <input type='submit' value='Search' ng-click="searchTwitch()"></input>
-        <button ng-click="removeStream(0)">Remove Stream 1</button>
-        <button ng-click="removeStream(1)">Remove Stream 2</button>
-        <button ng-click="removeStream(2)">Remove Stream 3</button>
-        <button ng-click="removeStream(3)">Remove Stream 4</button>
-        <button ng-click="removeStream(4)">Remove Stream 5</button>
+      <form class="user">
+        <input type="text" ng-model="data.userInput"></input>
+        <input type='submit' value='Search Streamer' ng-click="searchUser()"></input>
         <button ng-click="removeStream(5)">Remove Stream 6</button>
+        <button ng-click="removeStream(4)">Remove Stream 5</button>
+        <button ng-click="removeStream(3)">Remove Stream 4</button>
+        <button ng-click="removeStream(2)">Remove Stream 3</button>
+        <button ng-click="removeStream(1)">Remove Stream 2</button>
+        <button ng-click="removeStream(0)">Remove Stream 1</button>
+      </form>
+      <form class="game">
+        <input type="text" ng-model="data.gameInput"></input>
+        <input type='submit' value='Search Game' ng-click="searchGame()"></input>
       </form>
     </div>
   </div>
