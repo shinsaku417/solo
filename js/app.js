@@ -61,6 +61,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
         HelperFactory.errorFeedback("Oops! Something went wrong. Try again.", ".game");
       });
     }
+    $scope.data.gameInput = undefined;
     // $scope.search(GameFactory.searchGame, "gameInput", ".game");
   };
 
@@ -74,6 +75,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
   };
 
   $scope.removeTabs = function() {
+    HelperFactory.removeError();
     $scope.data.gameStreamers = [];
     $scope.query = "";
   }
