@@ -1,6 +1,6 @@
 angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', 'hexstream.helperfactory'])
 
-.controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http) {
+.controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http, $window) {
   $scope.data = {};
 
   $scope.init = function() {
@@ -75,4 +75,13 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
     $scope.data.gameStreamers = [];
     $scope.query = "";
   }
+
+  var w = angular.element($window);
+  w.bind('resize', function () {
+    if (UserFactory.streams) {
+      for (var i = 0; i < UserFactory.streams.length; i++) {
+        UserFactory.streams[i].width = ($window.innerWidth / 3) - 10;
+      }
+    }
+  });
 });

@@ -1,6 +1,6 @@
 angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
 
-.factory('UserFactory', function($http, HelperFactory) {
+.factory('UserFactory', function($http, $window, HelperFactory) {
   var streams = [];
   var streamers = [];
 
@@ -27,7 +27,7 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
       iframe.frameborder = "0";
       iframe.scrolling = "no";
       iframe.height = "370";
-      iframe.width = (window.innerWidth / 3) - 10;
+      iframe.width = ($window.innerWidth / 3) - 10;
       angular.element(document.body.querySelector('.streams')).append(iframe);
       streams.push(iframe);
       streamers.push(username);
