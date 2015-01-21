@@ -11,37 +11,39 @@
   <title>HexStream</title>
 </head>
 <body>
-  <h2>HexStream</h2>
-  <div ng-app="hexstream" ng-controller="hexstreamCtrl">
-    <div class="userInput">
-      <form class="user">
-        <input type="text" ng-model="data.userInput"></input>
-        <input class='btn btn-primary' type='submit' value='Search Streamer' ng-click="searchUser()"></input>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(0)">&times; Stream 1</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(1)">&times; Stream 2</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(2)">&times; Stream 3</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(3)">&times; Stream 4</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(4)">&times; Stream 5</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(5)">&times; Stream 6</button>
-        <button class='btn btn-danger' class="remove" ng-click="removeStream(6)">&times; All Streams</button>
-      </form>
-      <form class="game">
-        <input type="text" ng-model="data.gameInput"></input>
-        <input class='btn btn-primary' type='submit' value='Search Game' ng-click="searchGame()"></input>
-        <button class='btn btn-info' ng-click="searchGame($event)">League of Legends</button>
-        <button class='btn btn-info' ng-click="searchGame($event)">Counter-Strike: Global Offensive</button>
-        <button class='btn btn-info' ng-click="searchGame($event)">Hearthstone</button>
-        <button class='btn btn-info' ng-click="searchGame($event)">Dota 2</button>
-        <button class='btn btn-danger' ng-click="removeTabs()" ng-show="data.gameStreamers">&times; Streamers</button>
-      </form>
-      <div>
-        <input ng-model="query" type="text" placeholder="Filter by" autofocus>
-        <span ng-repeat="streamer in data.gameStreamers | filter:query">
-          <button class="streamerTab btn btn-default" ng-click="makeStream(streamer)">{{streamer}}</button>
-        </span>
+  <div class="app">
+    <h2>HexStream</h2>
+    <div ng-app="hexstream" ng-controller="hexstreamCtrl">
+      <div class="userInput">
+        <form class="user">
+          <input type="text" ng-model="data.userInput"></input>
+          <input class='btn btn-primary' type='submit' value='Search Streamer' ng-click="searchUser()"></input>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(0)">&times; Stream 1</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(1)">&times; Stream 2</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(2)">&times; Stream 3</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(3)">&times; Stream 4</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(4)">&times; Stream 5</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(5)">&times; Stream 6</button>
+          <button class='btn btn-danger' class="remove" ng-click="removeStream(6)">&times; All Streams</button>
+        </form>
+        <form class="game">
+          <input type="text" ng-model="data.gameInput"></input>
+          <input class='btn btn-primary' type='submit' value='Search Game' ng-click="searchGame()"></input>
+          <button class='btn btn-info' ng-click="searchGame($event)">League of Legends</button>
+          <button class='btn btn-info' ng-click="searchGame($event)">Counter-Strike: Global Offensive</button>
+          <button class='btn btn-info' ng-click="searchGame($event)">Hearthstone</button>
+          <button class='btn btn-info' ng-click="searchGame($event)">Dota 2</button>
+          <button class='btn btn-danger' ng-click="removeTabs()" ng-show="data.gameStreamers">&times; Streamers</button>
+        </form>
+        <div>
+          <input ng-model="query" type="text" placeholder="Filter by" autofocus>
+          <span ng-repeat="streamer in data.gameStreamers | filter:query">
+            <button class="streamerTab btn btn-default" ng-click="makeStream(streamer)">{{streamer}}</button>
+          </span>
+        </div>
       </div>
+      <div class="streams"></div>
     </div>
-    <div class="streams"></div>
   </div>
 </body>
 </html>

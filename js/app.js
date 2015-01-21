@@ -33,7 +33,6 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
     HelperFactory.removeError();
     var game;
     if (event) {
-      $scope.data.gameStreamers = [];
       game = event.srcElement.innerHTML;
     } else {
       game = $scope.data.gameInput;
@@ -45,7 +44,6 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
         var gameStreams = data.streams;
         var gameStreamers = [];
         if (gameStreams.length > 0) {
-          $scope.data.gameStreamers = [];
           for (var i = 0; i < gameStreams.length; i++) {
             var gameStreamer = gameStreams[i].channel.display_name;
             gameStreamers.push(gameStreamer);
