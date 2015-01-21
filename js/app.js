@@ -3,9 +3,6 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
 .controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http) {
   $scope.data = {};
 
-  var streams = UserFactory.streams;
-  var streamers = UserFactory.streamers;
-
   $scope.init = function() {
     var storedStreamers = localStorage.getItem("streamers");
     if (storedStreamers !== undefined && storedStreamers !== null) {

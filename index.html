@@ -32,7 +32,7 @@
         <button class='btn btn-info' ng-click="searchGame($event)">Counter-Strike: Global Offensive</button>
         <button class='btn btn-info' ng-click="searchGame($event)">Hearthstone</button>
         <button class='btn btn-info' ng-click="searchGame($event)">Dota 2</button>
-        <button class='btn btn-danger' ng-click="removeTabs()">Remove Tabs</button>
+        <button class='btn btn-danger' ng-click="removeTabs()" ng-show="data.gameStreamers">&times; Streamers</button>
       </form>
       <div>
         <input ng-model="query" type="text" placeholder="Filter by" autofocus>
