@@ -39,7 +39,7 @@
         <div>
           <input ng-model="query" type="text" placeholder="Filter by" autofocus>
           <span ng-repeat="streamer in data.gameStreamers | filter:query">
-            <button class="streamerTab btn btn-default" ng-click="makeStream(streamer)">{{streamer}}</button>
+            <button class="streamerTab btn btn-success" ng-click="makeStream(streamer)">{{streamer}}</button>
           </span>
         </div>
       </div>
