@@ -45,7 +45,7 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
         var gameStreamers = [];
         if (gameStreams.length > 0) {
           for (var i = 0; i < gameStreams.length; i++) {
-            var gameStreamer = gameStreams[i].channel.display_name;
+            var gameStreamer = gameStreams[i].channel.name;
             gameStreamers.push(gameStreamer);
           }
           $scope.data.gameStreamers = gameStreamers;

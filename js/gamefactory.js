@@ -7,7 +7,6 @@ angular.module('hexstream.gamefactory', ['hexstream.userfactory', 'hexstream.hel
       if (streams.length > 0) {
         for (var i = 0; i < streams.length; i++) {
           var streamer = streams[i].channel.display_name;
-          console.log(streamer);
           var el = document.createElement('a');
           el.innerHTML = streamer + " ";
           el.style.color = "lightblue";
