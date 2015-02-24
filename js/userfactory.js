@@ -16,6 +16,7 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
         HelperFactory.errorFeedback("Oops! Something went wrong. Try again.", ".game");
       });
     } else {
+      HelperFactory.removeError();
       HelperFactory.errorFeedback("Too many streams open!", ".game");
     }
   };
@@ -33,6 +34,7 @@ angular.module('hexstream.userfactory', ['hexstream.helperfactory'])
       streamers.push(username);
       HelperFactory.setStorage(streamers);
     } else {
+      HelperFactory.removeError();
       HelperFactory.errorFeedback("Too many streams open!", ".game");
     }
   }
