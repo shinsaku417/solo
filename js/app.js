@@ -1,6 +1,6 @@
-angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', 'hexstream.helperfactory'])
+angular.module('hexstream', ['hexstream.userfactory', 'hexstream.helperfactory'])
 
-.controller('hexstreamCtrl', function ($scope, UserFactory, GameFactory, HelperFactory, $http, $window) {
+.controller('hexstreamCtrl', function ($scope, UserFactory, HelperFactory, $http, $window) {
   $scope.data = {};
 
   $scope.init = function() {
@@ -57,7 +57,6 @@ angular.module('hexstream', ['hexstream.userfactory', 'hexstream.gamefactory', '
       });
     }
     $scope.data.gameInput = undefined;
-    // $scope.search(GameFactory.searchGame, "gameInput", ".game");
   };
 
   $scope.makeStream = function(streamer) {
